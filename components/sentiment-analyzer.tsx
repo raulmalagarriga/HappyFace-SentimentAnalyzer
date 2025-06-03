@@ -25,34 +25,17 @@ export default function SentimentAnalyzer() {
     setLoading(true)
 
     try {
-      // Replace with your actual API endpoint
-      // const response = await fetch('https://your-api-endpoint.com/analyze', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ text })
-      // });
-      // return await response.json();
-
-      // Mock response for demonstration
-      await new Promise((resolve) => setTimeout(resolve, 800))
-
-      // Simple mock sentiment analysis
-      const words = text.toLowerCase().split(/\s+/)
-      const positiveWords = ["good", "great", "excellent", "happy", "love", "nice", "wonderful", "amazing"]
-      const negativeWords = ["bad", "terrible", "awful", "sad", "hate", "horrible", "disappointing"]
-
-      let score = 0
-      words.forEach((word) => {
-        if (positiveWords.includes(word)) score += 0.2
-        if (negativeWords.includes(word)) score -= 0.2
-      })
-
-      // Clamp between -1 and 1
-      score = Math.max(-1, Math.min(1, score))
-
-      const sentiment = score > 0.1 ? "positive" : score < -0.1 ? "negative" : "neutral"
-
-      return { sentiment, polarity: Number.parseFloat(score.toFixed(2)) }
+      const response = await fetch('http://localhost:8000/sentiment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: text })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to analyze sentiment');
+      }
+      
+      return await response.json();
     } finally {
       setLoading(false)
     }
