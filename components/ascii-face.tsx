@@ -55,7 +55,7 @@ export default function AsciiFace({ polarity }: AsciiFaceProps) {
     ████████████████████████████████████████`
     }
     // Neutral: -0.2 to 0.2
-    else if (polarity >= -0.2) {
+    else if (polarity == 0) {
       return `
     ████████████████████████████████████████
     ██                                    ██
@@ -70,7 +70,7 @@ export default function AsciiFace({ polarity }: AsciiFaceProps) {
     ████████████████████████████████████████`
     }
     // Sad: -0.6 to -0.2
-    else if (polarity >= -0.6) {
+    else if (polarity >= -0.2) {
       return `
     ████████████████████████████████████████
     ██                                    ██
