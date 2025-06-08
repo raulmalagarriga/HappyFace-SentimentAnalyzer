@@ -71,11 +71,11 @@ export default function SentimentAnalyzer() {
           </div>
         </div>
 
-        <div className="ascii-container h-[400px] overflow-hidden flex flex-col items-center justify-center">
+        <div className="ascii-container h-[300px] overflow-hidden flex flex-col items-center justify-center">
           <AsciiFace polarity={result?.polarity || 0} />
         </div>
 
-        <div className="mt-4 font-mono text-xs">
+        <div className="mt-2 font-mono text-xs">
           {result && (
             <div className="typing-effect">
               &gt; Analysis complete:
