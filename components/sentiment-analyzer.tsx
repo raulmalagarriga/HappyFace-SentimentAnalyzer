@@ -24,8 +24,10 @@ export default function SentimentAnalyzer() {
   const analyzeSentiment = async (text: string): Promise<SentimentResponse> => {
     setLoading(true)
 
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL;
+
     try {
-      const response = await fetch('http://localhost:8000/sentiment', {
+      const response = await fetch(`${baseUrl}/sentiment`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: text })
